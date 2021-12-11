@@ -44,7 +44,7 @@ const flash = arr => {
   while(!!~inner.flat().indexOf(9)){
     for(let y = 0; y < inner.length; y++){
       for(let x = 0; x < inner[y].length; x++){
-        if(inner[y][x] === 9){
+        if(inner[y][x] > 9){
           nines.push([y, x])
           incrementNeighbours(y, x, inner)
           inner[y][x] = 0

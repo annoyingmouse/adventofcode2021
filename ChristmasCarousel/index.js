@@ -42,32 +42,35 @@ slides.forEach((slide, i) => {
 })
 
 next.addEventListener('click', () => {
-
-  //     track.style.transition = 'none'
-  //     track.style.transform = `translate3d(0px, 0, 0)`
-  //     track.style.transform = `translate3d(-${width}px, 0, 0)`
-  //     track.style.transition = `transform ${delay}ms ease 0s`
-  //     track.dataset.current = 1
-  // }else{
+  let current = parseInt(track.dataset.current, 10) + 1
+  track.style.transition = `transform ${delay}ms ease 0s`
   track.style.transform = `translateX(${parseInt(track.dataset.position, 10) - width}px)`
   track.dataset.position = `${parseInt(track.dataset.position, 10) - width}`
-  track.dataset.current = parseInt(track.dataset.current, 10) + 1
-  //}
-  if(parseInt(track.dataset.current, 10) === 3){
-    track.style.transition = 'none'
-    track.style.transform = `translate3d(0px, 0, 0)`
-    track.style.transform = `translate3d(-${width}px, 0, 0)`
+  track.dataset.current = current
+  if(current === 4){
+    setTimeout(function(){
+      track.style.transition = `none`
+      track.style.transform = `translate3d(-${width}px, 0, 0)`
+      track.dataset.position = `-${width}`
+      track.dataset.current = 1
+    }, delay)
   }
-
-
-
-
 })
 
 previous.addEventListener('click', () => {
+  let current = parseInt(track.dataset.current, 10) - 1
+  track.style.transition = `transform ${delay}ms ease 0s`
   track.style.transform = `translateX(${parseInt(track.dataset.position, 10) + width}px)`
   track.dataset.position = `${parseInt(track.dataset.position, 10) + width}`
-  track.dataset.current = parseInt(track.dataset.current, 10) + 1
+  track.dataset.current = current
+  if(current === 0){
+    setTimeout(function(){
+      track.style.transition = `none`
+      track.style.transform = `translate3d(-${width * 3}px, 0, 0)`
+      track.dataset.position = `-${width * 3}`
+      track.dataset.current = 3
+    }, delay)
+  }
 })
 
 
